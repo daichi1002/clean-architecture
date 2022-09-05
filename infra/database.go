@@ -47,7 +47,12 @@ func connectDB() (*gorm.DB, error) {
 		log.Fatal(err)
 	}
 
-	db.AutoMigrate(&domain.User{})
+	migrateErr := db.AutoMigrate(&domain.User{})
+
+	if migrateErr != nil {
+		log.Fatal(err)
+	}
+
 	return db, nil
 }
 
