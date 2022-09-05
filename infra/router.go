@@ -15,8 +15,9 @@ func InitRouter() {
 	loadEnv()
 
 	router := gin.Default()
+	gormHandler := NewGormHandler()
 
-	userController := controller.NewUserController(NewGormHandler())
+	userController := controller.NewUserController(gormHandler)
 	// エンドポイント
 	router.GET("/users", func(c *gin.Context) { userController.Index(c) })
 	router.POST("/user", func(c *gin.Context) { userController.Create(c) })
