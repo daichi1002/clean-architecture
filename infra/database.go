@@ -54,3 +54,9 @@ func connectDB() (*gorm.DB, error) {
 func (handler *GormHandler) Find(out interface{}, where ...interface{}) *gorm.DB {
 	return handler.db.Find(out, where...)
 }
+
+func (handler *GormHandler) Store(obj interface{}) *gorm.DB {
+	fmt.Println("===============")
+	fmt.Println(&obj)
+	return handler.db.Create(obj)
+}

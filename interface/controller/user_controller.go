@@ -1,6 +1,7 @@
 package controller
 
 import (
+	"clean-architecture/domain"
 	"clean-architecture/interface/database"
 	"clean-architecture/usecase"
 )
@@ -28,5 +29,24 @@ func (controller *UserController) Index(c Context) (err error) {
 		return
 	}
 	c.JSON(200, users)
+	return
+}
+
+// ユーザー作成
+func (controller *UserController) Create(c Context) (err error) {
+	u := domain.User{}
+	bindError := c.BindJSON(&u)
+
+	if bindError != nil {
+		c.JSON(400, NewError(err))
+	}
+
+	err = controller.Interactor.CreateUser(&u)
+
+	if err != nil {
+		c.JSON(500, NewError(err))
+		return
+	}
+	c.JSON(200, nil)
 	return
 }

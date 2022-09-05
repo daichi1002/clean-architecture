@@ -10,7 +10,7 @@ import (
 
 var Router *gin.Engine
 
-func init() {
+func InitRouter() {
 	// 環境変数読み込み
 	loadEnv()
 
@@ -19,6 +19,7 @@ func init() {
 	userController := controller.NewUserController(NewGormHandler())
 	// エンドポイント
 	router.GET("/users", func(c *gin.Context) { userController.Index(c) })
+	router.POST("/user", func(c *gin.Context) { userController.Create(c) })
 
 	Router = router
 }
