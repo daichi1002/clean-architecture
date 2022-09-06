@@ -50,3 +50,20 @@ func (controller *UserController) Create(c Context) {
 	}
 	c.JSON(200, nil)
 }
+
+// ユーザー詳細
+func (controller *UserController) Show(c Context) {
+	userId := c.Param("id")
+	user, err := controller.Interactor.ShowUser(userId)
+	if err != nil {
+		c.JSON(500, NewError(err))
+		return
+	}
+
+	if user == nil {
+		c.JSON(204, nil)
+		return
+	}
+
+	c.JSON(200, user)
+}

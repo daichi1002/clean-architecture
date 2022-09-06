@@ -21,6 +21,7 @@ func InitRouter() {
 	// エンドポイント
 	router.GET("/users", func(c *gin.Context) { userController.Index(c) })
 	router.POST("/user", func(c *gin.Context) { userController.Create(c) })
+	router.GET("/user/:id", func(c *gin.Context) { userController.Show(c) })
 
 	Router = router
 }
