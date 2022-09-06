@@ -13,7 +13,7 @@ import (
 )
 
 type GormHandler struct {
-	db *gorm.DB
+	DB *gorm.DB
 }
 
 func NewGormHandler() *GormHandler {
@@ -22,7 +22,7 @@ func NewGormHandler() *GormHandler {
 		panic(err.Error)
 	}
 	GormHandler := new(GormHandler)
-	GormHandler.db = conn
+	GormHandler.DB = conn
 	return GormHandler
 }
 
@@ -57,9 +57,9 @@ func connectDB() (*gorm.DB, error) {
 }
 
 func (handler *GormHandler) Find(out interface{}, where ...interface{}) *gorm.DB {
-	return handler.db.Find(out, where...)
+	return handler.DB.Find(out, where...)
 }
 
 func (handler *GormHandler) Store(obj interface{}) *gorm.DB {
-	return handler.db.Create(obj)
+	return handler.DB.Create(obj)
 }
