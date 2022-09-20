@@ -25,3 +25,5 @@ func (interactor *UserInteractor) ShowUser(id string) (user *domain.User, err er
 
 	return
 }
+
+func (interactor *UserInteractor) Test() {}

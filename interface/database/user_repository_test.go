@@ -57,12 +57,12 @@ func TestFindAll(t *testing.T) {
 	}
 	// 期待される結果
 	expect := []domain.User{{
-		UserId:       "userId1",
-		Name:         "name1",
-		FavoriteFood: "favoriteFood1",
-		Birthday:     time.Now(),
-		CreatedAt:    time.Now(),
-		UpdatedAt:    time.Now(),
+		UserId:    "userId1",
+		Name:      "name1",
+		Email:     "test@example.com",
+		Birthday:  time.Now(),
+		CreatedAt: time.Now(),
+		UpdatedAt: time.Now(),
 	}}
 
 	// 期待されるSQL
@@ -71,7 +71,7 @@ func TestFindAll(t *testing.T) {
 	//DBの振る舞いを定義する
 	mock.ExpectQuery(regexp.QuoteMeta(query)).
 		WillReturnRows(
-			sqlmock.NewRows(expectedColumns).AddRow(expect[0].UserId, expect[0].Name, expect[0].FavoriteFood, expect[0].Birthday, expect[0].CreatedAt, expect[0].UpdatedAt))
+			sqlmock.NewRows(expectedColumns).AddRow(expect[0].UserId, expect[0].Name, expect[0].Email, expect[0].Birthday, expect[0].CreatedAt, expect[0].UpdatedAt))
 	// repository 初期化
 	repo := &database.UserRepository{GormHandler: dummyGormHandler(mockDB)}
 	articles, _ := repo.FindAll()

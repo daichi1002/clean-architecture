@@ -1,5 +1,6 @@
 lint:
 	golangci-lint run
+	protolint lint -fix .
 
 run:
 	go run main.go
