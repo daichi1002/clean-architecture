@@ -11,6 +11,7 @@ import (
 	"syscall"
 
 	"github.com/spf13/viper"
+	"google.golang.org/grpc/reflection"
 )
 
 func main() {
@@ -36,6 +37,10 @@ func main() {
 		log.Fatal(err)
 	}
 
+	log.Printf("server start!")
+	// サーバーリフレクションを有効にしています。
+	// 有効にすることでシリアライズせずとも後述する`grpc_cli`で動作確認ができるようになります。
+	reflection.Register(grpcServer)
 	grpcServer.Serve(listener)
 }
 
