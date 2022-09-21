@@ -8,9 +8,9 @@ import (
 	"google.golang.org/grpc"
 )
 
-func NewGRPCServer() *grpc.Server {
+func NewGRPCServer(gormHandler *infra.GormHandler) *grpc.Server {
 	server := grpc.NewServer()
-	gormHandler := infra.NewGormHandler()
+
 	pb.RegisterUserServiceServer(server, service.NewUserService(gormHandler))
 
 	return server
