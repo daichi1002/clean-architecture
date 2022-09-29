@@ -48,3 +48,5 @@ func (service *UserService) CreateUser(ctx context.Context, request *pb.CreateUs
 	}
 	return &pb.CreateUserResponse{User: user.ToProto()}, nil
 }
+
+// ユーザー取得

@@ -8,8 +8,10 @@ option go_package = "pb/";
 import "google/protobuf/timestamp.proto";
 
 service UserService {
+  // ユーザー
   rpc ListUsers(ListUsersRequest) returns (ListUsersResponse) {}
   rpc CreateUser(CreateUserRequest) returns (CreateUserResponse) {}
+  rpc GetUser(GetUserRequest) returns (GetUserResponse) {}
 }
 
 message User {
@@ -34,5 +36,11 @@ message CreateUserRequest {
   google.protobuf.Timestamp Birthday = 3;
 }
 message CreateUserResponse {
+  User user = 1;
+}
+message GetUserRequest {
+  string UserId = 1;
+}
+message GetUserResponse {
   User user = 1;
 }

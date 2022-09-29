@@ -23,7 +23,7 @@ func ValidateStructWithContext(ctx context.Context, structPtr interface{}, field
 					Description: value.Error(),
 				})
 			}
-			log.Fatalf("validation error, error: %v", validationErrors)
+			log.Printf("validation error, error: %v", validationErrors)
 			stsWithDetails, _ := sts.WithDetails(&errdetails.BadRequest{FieldViolations: violations})
 			return stsWithDetails.Err()
 		}
