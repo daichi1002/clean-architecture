@@ -50,3 +50,12 @@ func (service *UserService) CreateUser(ctx context.Context, request *pb.CreateUs
 }
 
 // ユーザー取得
+func (service *UserService) GetUser(ctx context.Context, request *pb.GetUserRequest) (*pb.GetUserResponse, error) {
+	user, err := service.Interactor.ShowUser(request.UserId)
+	if err != nil {
+		fmt.Println(err)
+	}
+	return &pb.GetUserResponse{
+		User: user.ToProto(),
+	}, nil
+}
